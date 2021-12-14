@@ -18,7 +18,7 @@
     ],
     "overrides": [
       {
-        "files": ["*.ts", "*.tsx"],
+        "files": ["*.ts", "!*.d.ts"],
         "parserOptions": {
           "project": ["./tsconfig.json"]
         }
