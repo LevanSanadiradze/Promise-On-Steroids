@@ -1,0 +1,33 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "project": "./tsconfig.json",
+      "tsconfigRootDir": "./receiver"
+    },
+    "plugins": [
+      "@typescript-eslint",
+      "import"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:import/recommended",
+      "plugin:import/typescript"
+    ],
+    "overrides": [
+      {
+        "files": ["*.ts", "*.tsx"],
+        "parserOptions": {
+          "project": ["./tsconfig.json"]
+        }
+      }
+    ],
+    "rules": {
+      "@typescript-eslint/no-namespace": "off",
+      "@typescript-eslint/no-floating-promises": "error",
+
+      "import/no-unused-modules": [1, {"unusedExports": true}]
+    }
+  }
