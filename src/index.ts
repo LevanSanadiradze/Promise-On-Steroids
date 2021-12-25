@@ -1,19 +1,20 @@
 export interface Options {
-    signal ?: AbortSignal
+    signal ?: AbortSignal;
+    abortMessage ?: string;
 }
 
-const ABORTED = 'ABORTED';
+export default function<T> (executor : (resolve : (value : T) => void, reject : (reason ?: any) => void, options ?: Options) => void, options : Options = {}) {
+    const ABORT_MESSAGE = options.abortMessage ?? 'ABORTED';
 
-export default function<T> (executor : (resolve: (value: T) => void, reject: (reason?: any) => void) => void, options : Options = {}) {
     if(options.signal?.aborted) {
-        return Promise.reject(ABORTED);
+        return Promise.reject(ABORT_MESSAGE);
     }
 
     return new Promise<T>((res, rej) => {
         options.signal?.addEventListener('abort', () => {
-            rej(ABORTED);
+            rej(ABORT_MESSAGE);
         });
 
-        return executor(res, rej);
+        return executor(res, rej, options);
     });
 }
