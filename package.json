@@ -1,10 +1,17 @@
 {
   "name": "promise-on-steroids",
   "version": "0.0.1",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "repository": "git@github.com:LevanSanadiradze/Promise-On-Steroids.git",
   "author": "Levan Sanadiradze <sanadiradze.levan@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "lint": "yarn eslint",
+    "build": "tsc",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn lint"
+  },
   "devDependencies": {
     "@types/node": "^16.11.13",
     "@typescript-eslint/eslint-plugin": "^5.7.0",

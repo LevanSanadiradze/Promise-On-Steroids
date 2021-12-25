@@ -1,9 +1,11 @@
+// eslint-disable-next-line import/no-unused-modules
 export interface Options {
     signal ?: AbortSignal;
     abortMessage ?: string;
 }
 
-export default function<T> (executor : (resolve : (value : T) => void, reject : (reason ?: any) => void, options ?: Options) => void, options : Options = {}) {
+// eslint-disable-next-line import/no-unused-modules
+export default function<T> (executor : (resolve : (value : T | PromiseLike<T>) => void, reject : (reason ?: any) => void, options : Options) => void, options : Options = {}) {
     const ABORT_MESSAGE = options.abortMessage ?? 'ABORTED';
 
     if(options.signal?.aborted) {
