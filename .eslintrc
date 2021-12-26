@@ -2,8 +2,7 @@
     "root": true,
     "parser": "@typescript-eslint/parser",
     "plugins": [
-      "@typescript-eslint",
-      "import"
+      "@typescript-eslint"
     ],
     "extends": [
       "eslint:recommended",
@@ -22,8 +21,6 @@
     ],
     "rules": {
       "@typescript-eslint/no-namespace": "off",
-      "@typescript-eslint/no-floating-promises": "error",
-
-      "import/no-unused-modules": [1, {"unusedExports": true}]
+      "@typescript-eslint/no-floating-promises": "error"
     }
   }
