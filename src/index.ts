@@ -21,13 +21,15 @@ const PromiseOnSteroids = <T>(executor : (resolve : (value : T | PromiseLike<T>)
 
 export default PromiseOnSteroids;
 
-export const wrapper = (promises : Promise<any>[], options : Options) => {
-    const result : Promise<any>[] = [];
+export const wrapper = <T>(promise : Promise<T>, options : Options) => PromiseOnSteroids<T>((res, rej) => promise.then(res, rej), options);
+
+export const arrayWrapper = <T>(promises : Promise<T>[], options : Options) => {
+    const result : Promise<T>[] = [];
     for(const P of promises) {
-        result.push(PromiseOnSteroids((res, rej) => P.then(res, rej), options));
+        result.push(wrapper(P, options));
     }
 
     return result;
 }
 
-export const all = (promises : Promise<any>[], options : Options = {}) => Promise.all(wrapper(promises, options));
+export const all = <T>(promises : Promise<T>[], options : Options = {}) => Promise.all(arrayWrapper(promises, options));
